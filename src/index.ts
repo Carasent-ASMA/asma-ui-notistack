@@ -12,13 +12,4 @@ if (!core_ui) {
     realWindow.__ASMA_NOTISTACK__ = await import('./internal')
     core_ui = realWindow.__ASMA_NOTISTACK__
 }
-export const {
-    SnackbarProvider,
-    StyledSnackbar,
-    closeSnackbar,
-    enqueueSnackbar,
-    message,
-    processAlertSnackBar,
-    processInfoSnackbar,
-    useSnackbar,
-} = core_ui
+export const { SnackbarProvider, closeSnackbar, enqueueSnackbar, message, processInfoSnackbar, useSnackbar } = core_ui
