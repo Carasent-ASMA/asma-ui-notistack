@@ -1,9 +1,9 @@
 {
-    "name": "asma-core-ui",
+    "name": "asma-ui-notistack",
     "publishConfig": {
         "access": "public"
     },
-    "version": "0.0.0",
+    "version": "0.0.2",
     "type": "module",
     "files": [
         "dist/**/*",
@@ -13,8 +13,8 @@
     "keywords": [],
     "author": "asma-team",
     "types": "./dist/index.d.ts",
-    "main": "./dist/asma-core-ui.es.js",
-    "module": "./dist/asma-core-ui.es.js",
+    "main": "./dist/asma-ui-notistack.es.js",
+    "module": "./dist/asma-ui-notistack.es.js",
     "scripts": {
         "dev": "vite",
         "build": "tsc && rm -rf ./dist && vite build",
@@ -115,7 +115,7 @@
     },
     "exports": {
         ".": {
-            "import": "./dist/asma-core-ui.es.js"
+            "import": "./dist/asma-ui-notistack.es.js"
         },
         "./dist/style.css": "./dist/style.css",
         "./tw-configs/twConfigs.json": "./tw-configs/twConfigs.json"
