@@ -19,11 +19,12 @@ export default defineConfig({
         }),
     ],
     build: {
+        target: 'ES2022',
         lib: {
             entry: resolve('src', 'index.ts'),
-            name: 'asma-core-ui',
+            name: 'asma-ui-notistack',
             formats: ['es'],
-            fileName: (format) => `asma-core-ui.${format}.js`,
+            fileName: (format) => `asma-ui-notistack.${format}.js`,
         },
         rollupOptions: {
             external: [...Object.keys(packageJson.peerDependencies), ...Object.keys(packageJson.devDependencies)],
