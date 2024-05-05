@@ -5,7 +5,7 @@ declare global {
         rawWindow?: typeof window
     }
 }
-const realWindow = window.rawWindow || window
+export const realWindow = window.rawWindow || window
 let core_ui = realWindow.__ASMA_NOTISTACK__
 
 if (!core_ui) {
@@ -18,6 +18,7 @@ export const {
     enqueueSnackbar,
     message,
     processInfoSnackbar,
-    
+    processAlertSnackBar,
+
     useSnackbar,
 } = core_ui

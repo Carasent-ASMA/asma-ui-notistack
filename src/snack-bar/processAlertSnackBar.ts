@@ -1,6 +1,11 @@
 import { enqueueSnackbar } from 'notistack'
 
 export function processAlertSnackBar(message: string) {
+    if (typeof enqueueSnackbar === undefined) {
+        console.error('enqueueSnackbar is undefined did you forget to add the SnackBarProvider?')
+        return
+    }
+
     enqueueSnackbar({
         message,
         variant: 'alert',

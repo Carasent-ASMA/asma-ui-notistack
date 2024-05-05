@@ -3,11 +3,21 @@ import { SnackbarProvider as NotistackProvider, type SnackbarProviderProps } fro
 import { StyledAlertSnackbar } from './StyledAlertSnackbar'
 import { StyledInfoSnackbar } from './components/StyledInfoSnackbar'
 
-/**
- * @ignore
- * @internal
- */
+declare global {
+    interface Window {
+        __NOTISTACK_PROVIDER_INITIATED__?: boolean
+    }
+}
+
+window.__NOTISTACK_PROVIDER_INITIATED__ = window.__NOTISTACK_PROVIDER_INITIATED__ ?? false
+
 export const SnackbarProvider = (props: SnackbarProviderProps) => {
+    if (window.__NOTISTACK_PROVIDER_INITIATED__) {
+        return props.children
+    }
+
+    window.__NOTISTACK_PROVIDER_INITIATED__ = true
+
     return (
         <NotistackProvider
             {...props}
