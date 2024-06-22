@@ -5,14 +5,14 @@ declare global {
         rawWindow?: typeof window
     }
 }
-export const realWindow = window.rawWindow || window
+/* export const realWindow = window.rawWindow || window
 let core_ui = realWindow.__ASMA_NOTISTACK__
 
 if (!core_ui) {
     realWindow.__ASMA_NOTISTACK__ = await import('./internal')
     core_ui = realWindow.__ASMA_NOTISTACK__
-}
-export const {
+} */
+/* export const {
     SnackbarProvider,
     closeSnackbar,
     enqueueSnackbar,
@@ -21,4 +21,5 @@ export const {
     processAlertSnackBar,
 
     useSnackbar,
-} = core_ui
+} = core_ui */
+export * from './internal'
