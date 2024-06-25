@@ -3,7 +3,7 @@
     "publishConfig": {
         "access": "public"
     },
-    "version": "0.0.9",
+    "version": "0.1.0",
     "type": "module",
     "files": [
         "dist/**/*",
@@ -44,15 +44,10 @@
         "@mui/material": "^5.13.7",
         "@tanstack/react-table": "^8.10.0",
         "clsx": "^1.2.1",
-        "date-fns": "^2.30.0",
-        "lodash-es": "^4.17.21",
-        "material-ui-popup-state": "^5.0.10",
         "node": "18.17.0",
         "notistack": "^3.0.1",
         "react": "^18.2.0",
-        "react-day-picker": "^8.8.2",
-        "react-dom": "^18.2.0",
-        "react-quill": "^2.0.0"
+        "react-dom": "^18.2.0"
     },
     "devDependencies": {
         "@changesets/cli": "^2.26.2",
