@@ -3,7 +3,7 @@
     "publishConfig": {
         "access": "public"
     },
-    "version": "0.1.4",
+    "version": "0.1.5",
     "type": "module",
     "files": [
         "dist/**/*",
@@ -15,6 +15,16 @@
     "types": "./dist/index.d.ts",
     "main": "./dist/asma-ui-notistack.es.js",
     "module": "./dist/asma-ui-notistack.es.js",
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./dist/index.d.ts",
+                "default": "./dist/asma-ui-notistack.es.js"
+            }
+        },
+        "./dist/style.css": "./dist/style.css",
+        "./tw-configs/twConfigs.json": "./tw-configs/twConfigs.json"
+    },
     "scripts": {
         "dev": "vite",
         "build": "tsc && rm -rf ./dist && vite build",
@@ -102,12 +112,5 @@
     "resolutions": {
         "@types/node": "18.0.3",
         "node": "18.17.0"
-    },
-    "exports": {
-        ".": {
-            "import": "./dist/asma-ui-notistack.es.js"
-        },
-        "./dist/style.css": "./dist/style.css",
-        "./tw-configs/twConfigs.json": "./tw-configs/twConfigs.json"
     }
 }
