@@ -1,19 +1,9 @@
-import { enqueueSnackbar, type SnackbarAction, type SnackbarMessage } from 'notistack'
-import type { AlertColor } from '@mui/material'
-import type { Locale } from 'src/interfaces/interfaces'
+import { enqueueSnackbar, type SnackbarMessage } from 'notistack'
+import type { StyledDefaultSnackbarProps } from './components/StyledDefaultSnackbar'
 
-export function processDefaultSnackbar(
-    message: SnackbarMessage,
-    {
-        severity = 'info',
-        locale = 'no',
-        action,
-    }: Partial<{
-        severity: AlertColor
-        locale: Locale
-        action: SnackbarAction
-    }> = {},
-) {
+export function processDefaultSnackbar(message: SnackbarMessage, options: Partial<StyledDefaultSnackbarProps> = {}) {
+    const { severity = 'info', locale = 'no', ...rest } = options
+
     enqueueSnackbar(message, {
         variant: 'default',
         anchorOrigin: {
@@ -22,6 +12,6 @@ export function processDefaultSnackbar(
         },
         severity,
         locale,
-        action,
+        ...rest,
     })
 }

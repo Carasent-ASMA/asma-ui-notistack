@@ -15,18 +15,18 @@ export interface StyledDefaultSnackbarProps extends CustomContentProps {
     locale: Locale
 }
 
-const CONTAINER_COLORS: Record<AlertColor, string> = {
-    info: 'bg-info-50 border border-info-300',
-    error: 'bg-error-50 border border-error-300',
-    success: 'bg-success-50 border border-success-300',
-    warning: 'bg-warning-50 border border-warning-500',
+const CONTAINER_STYLES: Record<AlertColor, string> = {
+    info: 'bg-[#F0FAFF] border border-[#BAE8FD]',
+    error: 'bg-[#FCF3F3] border border-[#F6B9B9]',
+    success: 'bg-[#E9FBF0] border border-[#A1EBBD]',
+    warning: 'bg-[#FDF8DE] border border-[#F0C800]',
 }
 
 const TITLE_COLORS: Record<AlertColor, string> = {
-    info: 'text-info-700',
-    error: 'text-error-600',
-    success: 'text-success-700',
-    warning: 'text-warning-700',
+    info: 'text-[#1563BC]',
+    error: 'text-[#B6120D]',
+    success: 'text-[#0B7C36]',
+    warning: 'text-[#816D09]',
 }
 
 const SEVERITY_ICONS: Record<AlertColor, JSX.Element> = {
@@ -37,10 +37,10 @@ const SEVERITY_ICONS: Record<AlertColor, JSX.Element> = {
 }
 
 const MESSAGE_COLORS: Record<AlertColor, string> = {
-    info: 'text-info-800',
-    error: 'text-error-700',
-    success: 'text-success-800',
-    warning: 'text-warning-800',
+    info: 'text-[#1255A1]',
+    error: 'text-[#9D0F0F]',
+    success: 'text-[#085E29]',
+    warning: 'text-[#5F5107]',
 }
 
 const TITLES: Record<AlertColor, Record<Locale, string>> = {
@@ -78,7 +78,8 @@ export const StyledDefaultSnackbar = forwardRef<HTMLDivElement, StyledDefaultSna
             <div
                 className={clsx(
                     'flex flex-col gap-1 py-3 pl-4 pr-2 rounded-[4px] w-[400px] h-auto',
-                    CONTAINER_COLORS[severity],
+                    'shadow-[0_4px_40px_0_rgba(34,33,51,0.4)]',
+                    CONTAINER_STYLES[severity],
                 )}
             >
                 <div className={'flex justify-between items-center'}>
@@ -93,7 +94,7 @@ export const StyledDefaultSnackbar = forwardRef<HTMLDivElement, StyledDefaultSna
                         sx={{ p: '2px' }}
                         onClick={() => closeSnackbar(id)}
                     >
-                        <Icon icon={'ic:baseline-close'} width={20} height={20} color={'var(--colors-delta-700)'} />
+                        <Icon icon={'ic:baseline-close'} width={20} height={20} color={'#49525F'} />
                     </IconButton>
                 </div>
 
