@@ -2,6 +2,8 @@ import type { AlertColor } from '@mui/material'
 import { SnackbarProvider as NotistackProvider, type SnackbarProviderProps } from 'notistack'
 import { StyledAlertSnackbar } from './StyledAlertSnackbar'
 import { StyledInfoSnackbar } from './components/StyledInfoSnackbar'
+import { StyledDefaultSnackbar } from './components/StyledDefaultSnackbar'
+import type { Locale } from 'src/interfaces/interfaces'
 
 export const SnackbarProvider = (props: SnackbarProviderProps) => {
     return (
@@ -10,6 +12,7 @@ export const SnackbarProvider = (props: SnackbarProviderProps) => {
             Components={{
                 alert: StyledAlertSnackbar,
                 info: StyledInfoSnackbar,
+                default: StyledDefaultSnackbar,
             }}
             autoHideDuration={6000}
             anchorOrigin={{
@@ -19,7 +22,7 @@ export const SnackbarProvider = (props: SnackbarProviderProps) => {
             domRoot={document.body}
             maxSnack={3}
             classes={{ root: 'min-w-fit' }}
-            className='w-fit min-w-fit max-w-fit '
+            className='w-fit min-w-fit max-w-fit'
         >
             {props.children}
         </NotistackProvider>
@@ -28,6 +31,10 @@ export const SnackbarProvider = (props: SnackbarProviderProps) => {
 
 declare module 'notistack' {
     interface VariantOverrides {
+        default: {
+            severity: AlertColor
+            locale: Locale
+        }
         alert: {
             /**
              * The className to apply to the alert.

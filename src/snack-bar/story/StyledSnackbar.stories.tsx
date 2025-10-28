@@ -4,6 +4,7 @@ import { StyledSnackbar } from '../StyledSnackbar'
 import { SnackbarProvider } from '../SnackbarProvider'
 import { Alert, Button, Stack } from '@mui/material'
 import { processInfoSnackbar } from '../processInfoSnackbar'
+import { processDefaultSnackbar } from '../processDefaultSnackbar'
 
 const meta = {
     title: 'Feedback/Styled Snackbar',
@@ -54,6 +55,19 @@ const SnackbarExample = () => {
                     variant='outlined'
                 >
                     Show snackbar using notistack
+                </Button>
+
+                <Button
+                    onClick={() => {
+                        processDefaultSnackbar('You’ve reached the limit of allowed open Only Office documents', {
+                            locale: 'no',
+                            severity: 'info',
+                            action: <Button>Click here</Button>,
+                        })
+                    }}
+                    variant='outlined'
+                >
+                    Show default snackbar
                 </Button>
 
                 <Button variant='outlined' onClick={handleOpen}>
