@@ -43,9 +43,9 @@ export const StyledDefaultSnackbar = forwardRef<HTMLDivElement, StyledDefaultSna
 
     return (
         <SnackbarContent ref={ref} role='alert' {...rest}>
-            <div className={clsx(styles.container, styles[severity])}>
-                <div className={styles.header}>
-                    <div className={clsx(styles.title, styles[`title_${severity}`])}>
+            <div className={clsx(styles['container'], styles[severity])}>
+                <div className={styles['header']}>
+                    <div className={clsx(styles['title'], styles[`title_${severity}`])}>
                         {SEVERITY_ICONS[severity]}
                         <span>{TITLES[severity][locale]}</span>
                     </div>
@@ -55,7 +55,7 @@ export const StyledDefaultSnackbar = forwardRef<HTMLDivElement, StyledDefaultSna
                     </IconButton>
                 </div>
 
-                <div className={clsx(styles.message, styles[`message_${severity}`])}>{message}</div>
+                <div className={clsx(styles['message'], styles[`message_${severity}`])}>{message}</div>
 
                 {action ? <div>{typeof action === 'function' ? action(id) : action}</div> : null}
             </div>
