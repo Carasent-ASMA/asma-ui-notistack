@@ -60,7 +60,7 @@ const SnackbarExample = () => {
                 <Button
                     onClick={() => {
                         processDefaultSnackbar('You’ve reached the limit of allowed open Only Office documents', {
-                            locale: 'no',
+                            locale: 'en',
                             severity: 'info',
                             action: <Button>Click here</Button>,
                         })

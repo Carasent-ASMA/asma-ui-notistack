@@ -1,0 +1,87 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 12px 8px 12px 16px;
+    border-radius: 4px;
+    width: 400px;
+    height: auto;
+    box-shadow: 0 4px 40px 0 rgba(34, 33, 51, 0.4);
+    border: 1px solid transparent;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.message {
+    flex: 1;
+    padding: 2px 0;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+/* ---- Severity Variants ---- */
+.info {
+    background-color: #f0faff;
+    border-color: #bae8fd;
+}
+
+.error {
+    background-color: #fcf3f3;
+    border-color: #f6b9b9;
+}
+
+.success {
+    background-color: #e9fbf0;
+    border-color: #a1ebbd;
+}
+
+.warning {
+    background-color: #fdf8de;
+    border-color: #f0c800;
+}
+
+/* ---- Title Colors ---- */
+.title_info {
+    color: #1563bc;
+}
+
+.title_error {
+    color: #b6120d;
+}
+
+.title_success {
+    color: #0b7c36;
+}
+
+.title_warning {
+    color: #816d09;
+}
+
+/* ---- Message Colors ---- */
+.message_info {
+    color: #1255a1;
+}
+
+.message_error {
+    color: #9d0f0f;
+}
+
+.message_success {
+    color: #085e29;
+}
+
+.message_warning {
+    color: #5f5107;
+}
