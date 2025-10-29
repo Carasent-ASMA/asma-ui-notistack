@@ -1,9 +1,8 @@
 import { IconButton, type AlertColor } from '@mui/material'
 import clsx from 'clsx'
 import { Icon } from '@iconify/react'
-import { SnackbarContent, type CustomContentProps, useSnackbar } from 'notistack'
+import { SnackbarContent, type CustomContentProps, useSnackbar, type SnackbarMessage } from 'notistack'
 import { forwardRef } from 'react'
-import type { Locale } from 'src/interfaces/interfaces'
 import { InfoOutlineIcon } from 'src/icons/InfoOutlineIcon'
 import { ErrorOutlineIcon } from 'src/icons/ErrorOutlineIcon'
 import { CheckOutlineIcon } from '../CheckOutlineIcon'
@@ -13,7 +12,7 @@ import styles from './StyledDefaultSnackbar.module.scss'
 
 export interface StyledDefaultSnackbarProps extends CustomContentProps {
     severity: AlertColor
-    locale: Locale
+    title?: SnackbarMessage
 }
 
 const SEVERITY_ICONS: Record<AlertColor, JSX.Element> = {
@@ -23,15 +22,8 @@ const SEVERITY_ICONS: Record<AlertColor, JSX.Element> = {
     warning: <WarningAmberOutlineIcon height={24} width={24} />,
 }
 
-const TITLES: Record<AlertColor, Record<Locale, string>> = {
-    info: { en: 'Info', no: 'Info' },
-    error: { en: 'Error', no: 'Feil' },
-    success: { en: 'Success', no: 'Suksess' },
-    warning: { en: 'Warning', no: 'Advarsel' },
-}
-
 export const StyledDefaultSnackbar = forwardRef<HTMLDivElement, StyledDefaultSnackbarProps>((props, ref) => {
-    const { id, message, severity, locale, action, ...rest } = omit(props, [
+    const { id, message, severity, action, title, ...rest } = omit(props, [
         'anchorOrigin',
         'autoHideDuration',
         'hideIconVariant',
@@ -47,11 +39,11 @@ export const StyledDefaultSnackbar = forwardRef<HTMLDivElement, StyledDefaultSna
                 <div className={styles['header']}>
                     <div className={clsx(styles['title'], styles[`title_${severity}`])}>
                         {SEVERITY_ICONS[severity]}
-                        <span>{TITLES[severity][locale]}</span>
+                        <span>{title || severity}</span>
                     </div>
 
                     <IconButton aria-label='close' color='inherit' sx={{ p: '2px' }} onClick={() => closeSnackbar(id)}>
-                        <Icon icon='ic:baseline-close' width={20} height={20} color='#49525F' />
+                        <Icon icon='ic:baseline-close' width={20} height={20} color={'#49525F'} />
                     </IconButton>
                 </div>
 

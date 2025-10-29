@@ -3,7 +3,6 @@ import { SnackbarProvider as NotistackProvider, type SnackbarProviderProps } fro
 import { StyledAlertSnackbar } from './StyledAlertSnackbar'
 import { StyledInfoSnackbar } from './components/StyledInfoSnackbar'
 import { StyledDefaultSnackbar } from './components/StyledDefaultSnackbar'
-import type { Locale } from 'src/interfaces/interfaces'
 
 export const SnackbarProvider = (props: SnackbarProviderProps) => {
     return (
@@ -33,7 +32,7 @@ declare module 'notistack' {
     interface VariantOverrides {
         default: {
             severity: AlertColor
-            locale: Locale
+            title?: SnackbarMessage
         }
         alert: {
             /**

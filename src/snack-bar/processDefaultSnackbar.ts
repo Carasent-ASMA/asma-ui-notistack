@@ -2,7 +2,7 @@ import { enqueueSnackbar, type SnackbarMessage } from 'notistack'
 import type { StyledDefaultSnackbarProps } from './components/StyledDefaultSnackbar'
 
 export function processDefaultSnackbar(message: SnackbarMessage, options: Partial<StyledDefaultSnackbarProps> = {}) {
-    const { severity = 'info', locale = 'no', ...rest } = options
+    const { severity = 'info', ...rest } = options
 
     return enqueueSnackbar(message, {
         variant: 'default',
@@ -11,7 +11,6 @@ export function processDefaultSnackbar(message: SnackbarMessage, options: Partia
             horizontal: 'right',
         },
         severity,
-        locale,
         ...rest,
     })
 }
