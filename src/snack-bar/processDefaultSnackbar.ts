@@ -4,7 +4,7 @@ import type { StyledDefaultSnackbarProps } from './components/StyledDefaultSnack
 export function processDefaultSnackbar(message: SnackbarMessage, options: Partial<StyledDefaultSnackbarProps> = {}) {
     const { severity = 'info', locale = 'no', ...rest } = options
 
-    enqueueSnackbar(message, {
+    return enqueueSnackbar(message, {
         variant: 'default',
         anchorOrigin: {
             vertical: 'top',
