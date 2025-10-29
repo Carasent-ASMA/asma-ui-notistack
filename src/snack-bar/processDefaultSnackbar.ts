@@ -1,10 +1,10 @@
-import { enqueueSnackbar, type SnackbarMessage } from 'notistack'
+import { closeSnackbar, enqueueSnackbar, type SnackbarMessage } from 'notistack'
 import type { StyledDefaultSnackbarProps } from './components/StyledDefaultSnackbar'
 
 export function processDefaultSnackbar(message: SnackbarMessage, options: Partial<StyledDefaultSnackbarProps> = {}) {
     const { severity = 'info', ...rest } = options
 
-    return enqueueSnackbar(message, {
+    const snackbarKey = enqueueSnackbar(message, {
         variant: 'default',
         anchorOrigin: {
             vertical: 'top',
@@ -13,4 +13,9 @@ export function processDefaultSnackbar(message: SnackbarMessage, options: Partia
         severity,
         ...rest,
     })
+
+    return {
+        onClose: () => closeSnackbar(snackbarKey),
+        snackbarKey,
+    }
 }
