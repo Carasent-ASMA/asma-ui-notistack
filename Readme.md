@@ -1,5 +1,7 @@
 # How to create and use the Design System
 
+> **Parallel operations test**: Testing concurrent commit message generation and multi-remote push! 📦
+
 ## Component composition.
 
 - When creating components that consists of several components, each component should be styled.
