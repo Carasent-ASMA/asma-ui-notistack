@@ -1,6 +1,7 @@
 # How to create and use the Design System
 
 > **Parallel operations test**: Testing concurrent commit message generation and multi-remote push! 📦
+> **Update 2**: Semaphore + fixed remotes = smooth parallel operations! 🌊
 
 ## Component composition.
 
