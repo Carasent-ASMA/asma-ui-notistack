@@ -12,7 +12,7 @@
 
 ## Documentation and testing
 
-- All components shall be documented and tested in Storybook before PR is created.
+- All components shall be documented and tested in Storybook before PR is created. test
 
 ## Changelog
 
