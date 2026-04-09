@@ -27,6 +27,7 @@ export default defineConfig({
             entry: resolve('src', 'index.ts'),
             name: 'asma-ui-notistack',
             formats: ['es'],
+            cssFileName: 'style',
             fileName: (format) => `asma-ui-notistack.${format}.js`,
         },
         rollupOptions: {
