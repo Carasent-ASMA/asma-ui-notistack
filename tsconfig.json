@@ -18,6 +18,7 @@
         "jsx": "preserve",
         "module": "ESNext",
         "moduleResolution": "bundler",
+        "allowImportingTsExtensions": true,
         "allowSyntheticDefaultImports": true,
         "resolveJsonModule": true,
         "strictNullChecks": true,

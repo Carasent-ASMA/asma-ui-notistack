@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import type { Meta, StoryObj } from '@storybook/react'
+import type { Meta, StoryObj } from '@storybook/react-vite'
 import { StyledSnackbar } from '../StyledSnackbar'
 import { SnackbarProvider } from '../SnackbarProvider'
 import { Alert, Button, Stack } from '@mui/material'

@@ -1,6 +1,6 @@
 import type { Decorator, ReactRenderer } from '@storybook/react'
-import { useEffect, useGlobals } from '@storybook/addons'
-import { withThemeByClassName } from '@storybook/addon-styling'
+import { useEffect, useGlobals } from 'storybook/preview-api'
+import { withThemeByClassName } from '@storybook/addon-themes'
 import 'tailwindcss/tailwind.css'
 import './styles/index.css'
 import './styles/variables.css'
@@ -45,5 +45,5 @@ export const decorators: Decorator[] = [
             greenish: 'greenish',
         },
         defaultTheme: 'greenish',
-    }),
+    }) as Decorator,
 ]

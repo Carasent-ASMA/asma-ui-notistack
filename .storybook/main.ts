@@ -1,19 +1,16 @@
 import type { StorybookConfig } from '@storybook/react-vite'
-import { env } from '../configs/env'
+import { env } from '../configs/env.ts'
 
 const config: StorybookConfig = {
     stories: ['../src/**/*.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+
     addons: [
+        '@storybook/addon-docs',
         '@storybook/addon-a11y',
         '@storybook/addon-links',
-        '@storybook/addon-essentials',
-        '@storybook/addon-interactions',
-        '@storybook/addon-styling',
-        '@storybook/addons',
-        '@storybook/manager-api',
-        'storybook-addon-themes',
-        '@storybook/addon-mdx-gfm',
+        '@storybook/addon-themes',
     ],
+
     framework: {
         name: '@storybook/react-vite',
         options: {
@@ -22,10 +19,8 @@ const config: StorybookConfig = {
             },
         },
     },
-    docs: {
-        autodocs: 'tag',
-    },
     core: {},
+
     typescript: {
         check: true,
         reactDocgen: 'react-docgen-typescript',
@@ -42,6 +37,7 @@ const config: StorybookConfig = {
             },
         },
     },
+
     env,
 }
 export default config
