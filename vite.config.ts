@@ -6,6 +6,11 @@ import tsConfigPaths from 'vite-tsconfig-paths'
 import terser from '@rollup/plugin-terser'
 import * as packageJson from './package.json'
 
+const peerPackages = Object.keys(packageJson.peerDependencies)
+const externalPackages = [...peerPackages, 'react/jsx-runtime', 'react/jsx-dev-runtime']
+
+const isExternal = (id: string) => externalPackages.some((pkg) => id === pkg || id.startsWith(`${pkg}/`))
+
 // https://vitejs.dev/config/
 export default defineConfig({
     plugins: [
@@ -27,11 +32,12 @@ export default defineConfig({
             fileName: (format) => `asma-ui-notistack.${format}.js`,
         },
         rollupOptions: {
-            external: [...Object.keys(packageJson.peerDependencies), ...Object.keys(packageJson.devDependencies)],
+            external: isExternal,
             output: {
                 globals: {
                     react: 'React',
                     'react/jsx-runtime': 'react/jsx-runtime',
+                    'react/jsx-dev-runtime': 'react/jsx-dev-runtime',
                     'react-dom': 'ReactDOM',
                 },
                 plugins: [terser()],

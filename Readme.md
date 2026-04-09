@@ -1,9 +1,22 @@
 # How to create and use the Design System
 
+## Installation
+
+Consumers must provide their own compatible React runtime.
+
+```bash
+pnpm add react react-dom
+```
+
+Supported peer versions:
+
+- `react`: `^18.2.0 || ^19.0.0`
+- `react-dom`: `^18.2.0 || ^19.0.0`
+
 > **Parallel operations test**: Testing concurrent commit message generation and multi-remote push! 📦
 > **Update 2**: Semaphore + fixed remotes = smooth parallel operations! 🌊
 
-## Component composition.
+## Component composition
 
 - When creating components that consists of several components, each component should be styled.
 - Each components that is used to create a "composed" component should be styled, and remember to check if the component alread is styled.
