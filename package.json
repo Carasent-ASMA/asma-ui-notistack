@@ -27,7 +27,7 @@
     },
     "scripts": {
         "dev": "vite",
-        "build": "tsc && rm -rf ./dist && vite build",
+        "build": "if [ ! -f configs/env.ts ]; then cp configs/env.example.ts configs/env.ts; fi && tsc && rm -rf ./dist && vite build",
         "preview": "vite preview",
         "lint": "eslint src/**/*.{js,jsx,ts,tsx}",
         "version": "echo $npm_package_version",
