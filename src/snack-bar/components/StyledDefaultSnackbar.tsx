@@ -3,11 +3,11 @@ import clsx from 'clsx'
 import { Icon } from '@iconify/react'
 import { SnackbarContent, type CustomContentProps, useSnackbar, type SnackbarMessage } from 'notistack'
 import { forwardRef } from 'react'
-import { InfoOutlineIcon } from 'src/icons/InfoOutlineIcon'
-import { ErrorOutlineIcon } from 'src/icons/ErrorOutlineIcon'
+import { InfoOutlineIcon } from '../../icons/InfoOutlineIcon'
+import { ErrorOutlineIcon } from '../../icons/ErrorOutlineIcon'
 import { CheckOutlineIcon } from '../CheckOutlineIcon'
-import { WarningAmberOutlineIcon } from 'src/icons/WarningAmberOutlineIcon'
-import { omit } from 'src/helpers/reflections.helper'
+import { WarningAmberOutlineIcon } from '../../icons/WarningAmberOutlineIcon'
+import { omit } from '../../helpers/reflections.helper'
 import styles from './StyledDefaultSnackbar.module.scss'
 
 export interface StyledDefaultSnackbarProps extends CustomContentProps {
@@ -29,7 +29,7 @@ export const StyledDefaultSnackbar = forwardRef<HTMLDivElement, StyledDefaultSna
         'hideIconVariant',
         'iconVariant',
         'persist',
-    ])
+    ] as const)
 
     const { closeSnackbar } = useSnackbar()
 

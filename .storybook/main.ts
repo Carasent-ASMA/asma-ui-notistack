@@ -12,7 +12,6 @@ const config: StorybookConfig = {
         '@storybook/addons',
         '@storybook/manager-api',
         'storybook-addon-themes',
-        '@storybook/preset-create-react-app',
         '@storybook/addon-mdx-gfm',
     ],
     framework: {

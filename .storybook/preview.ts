@@ -1,3 +1,4 @@
+import type { Decorator, ReactRenderer } from '@storybook/react'
 import { useEffect, useGlobals } from '@storybook/addons'
 import { withThemeByClassName } from '@storybook/addon-styling'
 import 'tailwindcss/tailwind.css'
@@ -24,19 +25,20 @@ export const parameters = {
     },
 }
 
-export const useTheme = (StoryFn) => {
+export const useTheme: Decorator = (StoryFn, context) => {
     const [globals] = useGlobals()
+    const theme = typeof globals['theme'] === 'string' ? globals['theme'] : 'greenish'
 
     useEffect(() => {
-        document.body.setAttribute('data-theme', globals.theme)
-    }, [globals])
+        document.body.setAttribute('data-theme', theme)
+    }, [theme])
 
-    return StoryFn()
+    return StoryFn(context)
 }
 
-export const decorators = [
+export const decorators: Decorator[] = [
     useTheme,
-    withThemeByClassName({
+    withThemeByClassName<ReactRenderer>({
         themes: {
             default: 'default',
             fretex: 'fretex',

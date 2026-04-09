@@ -1,92 +1,191 @@
-# How to create and use the Design System
+# asma-ui-notistack
+
+`asma-ui-notistack` is a small, opinionated wrapper around `notistack` for ASMA-style snackbars.
+
+It provides:
+
+- a preconfigured `SnackbarProvider`
+- re-exported `notistack` APIs (`enqueueSnackbar`, `closeSnackbar`, `useSnackbar`)
+- higher-level helpers for common success, error, loading, and default-message flows
+- styled snackbar building blocks used by the helper layer
 
 ## Installation
 
-Consumers must provide their own compatible React runtime.
+Install the package together with its peer dependencies in the host app.
 
 ```bash
-pnpm add react react-dom
+pnpm add asma-ui-notistack react react-dom @mui/material immer
 ```
 
 Supported peer versions:
 
 - `react`: `^18.2.0 || ^19.0.0`
 - `react-dom`: `^18.2.0 || ^19.0.0`
+- `@mui/material`: `^5.13.7`
+- `immer`: `^9.0.21`
 
-> **Parallel operations test**: Testing concurrent commit message generation and multi-remote push! 📦
-> **Update 2**: Semaphore + fixed remotes = smooth parallel operations! 🌊
+`notistack` is a runtime dependency of this package, so consumers do not need to install it separately.
 
-## Component composition
+Depending on your bundler setup, you may also need to import the generated library stylesheet explicitly.
 
-- When creating components that consists of several components, each component should be styled.
-- Each components that is used to create a "composed" component should be styled, and remember to check if the component alread is styled.
-- When creating a "composed component" evalute if it's really needed to create a composed component, or just document how to use the styled components.
-  - MUI often has documentation on how to create composed components.
+```ts
+import 'asma-ui-notistack/dist/asma-ui-notistack.css'
+```
 
-## Documentation and testing
+## Quick Start
 
-- All components shall be documented and tested in Storybook before PR is created. test
-
-## Changelog
-
-The project uses "changesets" to automatically bump version and create a changelog.
-
-For each new feature or change run "npx changeset". Choose patch for a change or bug fix, minor for a new feature or major version for a breaking change. This creates a markdown file in .changeset folder. Commit to brach/PR as normal.
-
-A PR can have several changesets.
-
-The pipeline will automatically bump version and create changelog after merge to master.
-
-## Index file
-
-- Index files shall not be edited manually.
-- ctix is used for automatically create index files for exporting componens. Run "npm run create-index"
-- 'src/styles/index.ccss' is imported to 'src/theme/customMuiColors.ts' so exporting works with ctix.
-
-## Using MUI theme in App
+Wrap your app once with the provided provider.
 
 ```tsx
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { defaultTheme, customPalettes } from 'asma-ui-notistack';
+import { SnackbarProvider } from 'asma-ui-notistack'
+import 'asma-ui-notistack/dist/asma-ui-notistack.css'
 
-const dataTheme = window.document.body.attributes.getNamedItem('data-theme');
+export function AppProviders({ children }: { children: React.ReactNode }) {
+    return <SnackbarProvider>{children}</SnackbarProvider>
+}
+```
 
-const getTheme = () => {
-  switch (dataTheme?.value) {
-    case 'fretex':
-      return customPalettes.fretex.primary;
-    default:
-      return null;
-  }
-};
+The default provider configuration is:
 
-const theme = createTheme(defaultTheme, {
-  palette: {
-    ...defaultTheme.palette,
-    primary: {
-      ...getTheme(),
+- `autoHideDuration`: `6000`
+- `anchorOrigin`: top-right
+- `maxSnack`: `3`
+- custom variants: `alert`, `info`, `default`
+
+You can still pass regular `SnackbarProviderProps` to override this behavior.
+
+## Exported API
+
+Main exports:
+
+- `SnackbarProvider`
+- `enqueueSnackbar`
+- `closeSnackbar`
+- `useSnackbar`
+- `message`
+- `processInfoSnackbar`
+- `processAlertSnackBar`
+- `processDefaultSnackbar`
+- `StyledAlert`
+- `StyledSnackbar`
+
+## Recommended Usage
+
+### `message`
+
+Use the `message` helper for the most common flows.
+
+```tsx
+import { message } from 'asma-ui-notistack'
+
+message.info('Changes saved')
+message.error('Something went wrong')
+
+const closeLoading = message.loading('Uploading files...', {
+    id: 'upload-files',
+    persist: true,
+    closeButton: false,
+})
+
+// Later
+closeLoading()
+```
+
+`message.loading` and the other `message.*` helpers return a close callback. If you want to close only one snackbar manually, provide a stable `id`. Without an `id`, `closeSnackbar` falls back to notistack's default behavior.
+
+Supported helper options include the normal notistack provider/message options plus:
+
+- `severity`
+- `persist`
+- `closeButton`
+- `className`
+- `id`
+- `type: 'loading'`
+
+### `processDefaultSnackbar`
+
+Use this when you need the richer default snackbar layout with severity, title, and action support.
+
+```tsx
+import { Button } from '@mui/material'
+import { processDefaultSnackbar } from 'asma-ui-notistack'
+
+const { snackbarKey, onClose } = processDefaultSnackbar(
+    'You have reached the limit of open documents',
+    {
+        severity: 'error',
+        title: 'Limit reached',
+        action: <Button color='inherit'>Review</Button>,
     },
-    role: customPalettes.role,
-  },
-});
+)
 
-<React.Fragment>
-  <ThemeProvider theme={createMuiTheme(theme)}>
-    <... />
-  </ThemeProvider>
-</React.Fragment>
+// Optional manual close
+onClose()
 ```
 
-## Using Components in App
+### `processInfoSnackbar` and `processAlertSnackBar`
+
+These are convenience helpers for common top-right alert messages.
 
 ```tsx
-import { StyledButton } from 'asma-ui-notistack';
+import { processAlertSnackBar, processInfoSnackbar } from 'asma-ui-notistack'
 
-...
-
-<>
-  <StyledButton>
-    Text
-  </StyledButton>
-</>
+processInfoSnackbar('Shared successfully')
+processAlertSnackBar('Upload failed')
 ```
+
+## Using Re-exported `notistack` APIs
+
+If you need direct control, use the re-exported `enqueueSnackbar`, `closeSnackbar`, or `useSnackbar` APIs.
+
+```tsx
+import { enqueueSnackbar } from 'asma-ui-notistack'
+
+enqueueSnackbar({
+    variant: 'alert',
+    message: 'Profile updated',
+    severity: 'success',
+    alertVariant: 'filled',
+    closeButton: true,
+})
+```
+
+This package augments `notistack` with custom variant payloads:
+
+- `alert`: MUI alert-style snackbar with `severity`, `alertVariant`, `alertClassName`, and `closeButton`
+- `default`: richer content layout with `severity` and optional `title`
+- `info`: compact info/loading layout used by the `message` helper
+
+## Tailwind Tokens
+
+The package exposes shared Tailwind tokens at `asma-ui-notistack/tw-configs/twConfigs.json`.
+
+Use them if you want your host app to reuse the same colors, animations, and shadows that the snackbar components expect.
+
+```ts
+import twConfigs from 'asma-ui-notistack/tw-configs/twConfigs.json'
+
+export default {
+    theme: {
+        extend: {
+            colors: twConfigs.colors,
+            boxShadow: twConfigs.boxShadow,
+            animation: twConfigs.animation,
+            keyframes: twConfigs.keyframes,
+        },
+    },
+}
+```
+
+## Development
+
+Useful local commands:
+
+```bash
+pnpm storybook
+pnpm build
+pnpm exec tsc --noEmit
+pnpm exec changeset
+```
+
+The package uses Changesets for versioning and changelog generation. Add a changeset for any consumer-visible change.

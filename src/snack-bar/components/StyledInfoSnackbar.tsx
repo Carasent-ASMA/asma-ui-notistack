@@ -21,7 +21,7 @@ export const StyledInfoSnackbar = forwardRef<HTMLDivElement, StyledInfoSnackbarP
         'hideIconVariant',
         'iconVariant',
         'persist',
-    ])
+    ] as const)
 
     const { closeSnackbar } = useSnackbar()
 

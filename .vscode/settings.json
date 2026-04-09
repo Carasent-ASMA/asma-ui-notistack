@@ -26,11 +26,11 @@
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
     "eslint.validate": ["javascript", "javascriptreact", "html", "typescriptreact"],
-    "typescript.referencesCodeLens.enabled": true,
-    "javascript.referencesCodeLens.enabled": true,
+    "js/ts.referencesCodeLens.enabled": true,
     "editor.quickSuggestions": {
         "strings": true
     },
+
     "css.validate": false,
     "stylelint.enable": true, // Enable sytlelint
     "scss.validate": false, // Disable scss lint (optional if using scss)
@@ -40,6 +40,6 @@
     "todo-tree.tree.showCountsInTree": true,
     "todo-tree.tree.scanMode": "workspace only",
     //"typescript.tsdk": "node_modules/typescript/lib",
-    "typescript.tsdk": "node_modules/typescript/lib",
+    "js/ts.tsdk.path": "node_modules/typescript/lib",
     "tailwindCSS.classAttributes": ["class", "className", "classes"]
 }

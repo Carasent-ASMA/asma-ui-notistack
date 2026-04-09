@@ -2,12 +2,11 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import { resolve } from 'path'
 import dts from 'vite-plugin-dts'
-import tsConfigPaths from 'vite-tsconfig-paths'
-import terser from '@rollup/plugin-terser'
 import * as packageJson from './package.json'
 
 const peerPackages = Object.keys(packageJson.peerDependencies)
-const externalPackages = [...peerPackages, 'react/jsx-runtime', 'react/jsx-dev-runtime']
+const runtimeExternalPackages = ['notistack']
+const externalPackages = [...peerPackages, ...runtimeExternalPackages, 'react/jsx-runtime', 'react/jsx-dev-runtime']
 
 const isExternal = (id: string) => externalPackages.some((pkg) => id === pkg || id.startsWith(`${pkg}/`))
 
@@ -17,14 +16,13 @@ export default defineConfig({
         react({
             jsxRuntime: 'automatic',
         }),
-        tsConfigPaths(),
         dts({
             insertTypesEntry: true,
             exclude: ['node_modules/**/*', 'src/stories/**', 'src/**/*.stories.tsx', 'src/components/**/makeData.ts'],
         }),
     ],
     build: {
-        target: 'ES2022',
+        target: 'es2022',
         lib: {
             entry: resolve('src', 'index.ts'),
             name: 'asma-ui-notistack',
@@ -40,7 +38,6 @@ export default defineConfig({
                     'react/jsx-dev-runtime': 'react/jsx-dev-runtime',
                     'react-dom': 'ReactDOM',
                 },
-                plugins: [terser()],
             },
         },
     },
