@@ -21,3 +21,5 @@ export const message = {
     loading: (messageInfo: string | ReactNode, options?: MessageProps): (() => void) =>
         processMessageInfo(messageInfo, { ...options, type: 'loading' }),
 }
+
+export type { MessageProps }
