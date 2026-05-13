@@ -20,7 +20,7 @@ export const SnackbarProvider = (props: SnackbarProviderProps) => {
             }}
             domRoot={document.body}
             maxSnack={3}
-            classes={{ root: 'min-w-fit' }}
+            classes={{ root: 'min-w-fit flex justify-center' }}
             className='w-fit min-w-fit max-w-fit'
         >
             {props.children}
